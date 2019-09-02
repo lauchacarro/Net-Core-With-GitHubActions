@@ -1,7 +1,11 @@
 name: MiNuevoWorkflow
-on: [push, pull_request]
-    branches:    
-      - master         # Eventos de Push sobre el branch 'master'
+on: 
+  push:
+    branches:
+    - master      # Eventos de Push sobre el branch 'master'
+  pull_request:
+    branches:
+    - master      # Eventos de Pull Request sobre el branch 'master'
 jobs:
   build:
     name: Mi primer job
