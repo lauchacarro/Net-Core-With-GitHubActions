@@ -1,1 +1,14 @@
-
+name: MiNuevoWorkflow
+on: [push, pull_request]
+    branches:    
+      - master         # Eventos de Push sobre el branch 'master'
+jobs:
+  build:
+    name: Mi primer job
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '2.2.103' # Versión del SDK.
+    - run: dotnet publish -o app
