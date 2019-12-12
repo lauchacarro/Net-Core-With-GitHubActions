@@ -12,10 +12,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, windows-latest, macOS-latest, ubuntu-18.04]
+        sdk-version: ['3.0.100', '2.2.103', '2.2.103', '2.2.103']
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '2.2.103' # Versión del SDK.
+        dotnet-version: ${{ matrix.sdk-version }}
     - run: dotnet publish -o app
