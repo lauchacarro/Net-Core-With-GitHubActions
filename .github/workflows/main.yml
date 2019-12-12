@@ -7,13 +7,20 @@ on:
     branches:
     - master      # Eventos de Pull Request sobre el branch 'master'
 jobs:
-  build:
+  job_TOC:
+     name: Table of Content
+     runs-on: [ubuntu-latest]
+     steps:
+      - uses: technote-space/toc-generator@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  job-build:
     name: Mi primer job
+    needs: [job_TOC]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest, ubuntu-18.04]
-        sdk-version: ['3.0.100', '2.2.103', '2.2.103', '2.2.103']
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-dotnet@v1
